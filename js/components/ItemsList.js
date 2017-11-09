@@ -6,13 +6,17 @@ export default class ItemsList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            items: WalletStore.getAllItems()
+            items: WalletStore.getAllItems(),
+            budget: WalletStore.getTotalBudget()
         };
         this._onChange = this._onChange.bind(this);
     }
 
     _onChange() {
-        this.setState({ items: WalletStore.getAllItems() });
+        this.setState({ 
+            items: WalletStore.getAllItems(),
+            budget: WalletStore.getTotalBudget()
+        });
     }
 
     componentWillMount() {

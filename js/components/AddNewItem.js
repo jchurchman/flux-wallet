@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import WalletActions from '../actions/walletActions';
+import WalletStore from '../stores/walletStore';
 
 export default class AddNewItem extends Component {
 
@@ -33,20 +34,16 @@ export default class AddNewItem extends Component {
 
     _addNewItem(event) {
         event.preventDefault();
-        const { item } = this.state;
-        let { description, amount } = item;  // not sure this destructuring will work in the rest of the method
-
-        description = description || '-';
-        amount = amount || '0';
-
-        WalletActions.addNewItem(item);
+        this.state.item.description = this.state.item.description || '-';
+        this.state.item.amount = this.state.item.amount || '0';
+        WalletActions.addNewItem(this.state.item);
         this.setState({ item: this._getFreshItem() });
     }
 
     render() {
         return (
             <div>
-                <h3 className="total-budget">$0</h3>
+                <h3 className="total-budget">${WalletStore.getTotalBudget()}</h3>
                 <form className="form-inline add-item" onSubmit={this._addNewItem.bind(this)}>
                     <input 
                         type="text" 
