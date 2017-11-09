@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import WalletActions from '../actions/walletActions';
 
 export default class AddNewItem extends Component {
 
@@ -31,7 +32,15 @@ export default class AddNewItem extends Component {
     }
 
     _addNewItem(event) {
-        // ...
+        event.preventDefault();
+        const { item } = this.state;
+        let { description, amount } = item;  // not sure this destructuring will work in the rest of the method
+
+        description = description || '-';
+        amount = amount || '0';
+
+        WalletActions.addNewItem(item);
+        this.setState({ item: this._getFreshItem() });
     }
 
     render() {
