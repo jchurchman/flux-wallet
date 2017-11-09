@@ -1,3 +1,1 @@
-export default {
-	ADD_NEW_ITEM: 'ADD_NEW_ITEM'
-}
+export const ADD_NEW_ITEM = 'ADD_NEW_ITEM'
